@@ -1,7 +1,7 @@
 # Website Công ty ABC
 
 ## Giới thiệu
-Đồ án môn Lập trình web - Website giới thiệu công ty với đầy đủ tính năng: trang chủ, liên hệ, giới thiệu, hỏi/đáp, đăng ký/đăng nhập, phân quyền người dùng, quản trị viên.
+BTL LTW
 
 ## Công nghệ sử dụng
 - PHP 7.0+ (Pure PHP, không framework)
@@ -12,12 +12,19 @@
 
 ## Cấu trúc thư mục
 company_website/
+
 ├── inc/ # Cấu hình
+
 ├── templates/ # Header, footer
+
 ├── part1/ # Module #1 (Trang chủ, Liên hệ, Admin #1)
+
 ├── part2/ # Module #2 (Giới thiệu, Hỏi/Đáp, Admin #2)
+
 ├── uploads/ # Ảnh upload
+
 ├── srtdash/ # CSS admin
+
 └── database/ # File SQL
 
 
@@ -33,7 +40,7 @@ company_website/
 1. **Copy project vào thư mục htdocs**
 C:\xampp\htdocs\company_website\
 
-text
+
 
 2. **Tạo database**
 - Mở phpMyAdmin
