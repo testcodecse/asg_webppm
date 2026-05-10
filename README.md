@@ -1,4 +1,4 @@
-# Website Công ty ABC
+# Website 
 
 ## Giới thiệu
 BTL LTW
@@ -92,6 +92,3 @@ mkdir uploads/avatars
 ## Responsive
 Hỗ trợ đầy đủ các thiết bị: Desktop, Tablet, Mobile
 
-
-## License
-MIT
