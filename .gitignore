@@ -1,0 +1,25 @@
+# File hệ thống
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Thư mục upload (ảnh người dùng upload sau)
+uploads/
+uploads/avatars/
+
+# File log
+*.log
+error_log
+
+# File tạm của editor
+*.tmp
+*.swp
+*~
+
+# Thư mục database export (chỉ giữ file .sql, không giữ folder nén)
+database/*.sql
+!database/companywebsite.sql
+
+# Môi trường cấu hình riêng (nếu có)
+.env
+config.local.php

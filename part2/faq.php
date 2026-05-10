@@ -1,12 +1,12 @@
-<?php session_start(); ?>
-<?php include '../inc/config.php'; ?>
-
 <?php
-$stmt = $conn->query("SELECT * FROM faq WHERE status = 1 ORDER BY order_num ASC");
-$faqs = $stmt->fetchAll();
-?>
+include '../inc/config.php';
 
-<?php include '../templates/header.php'; ?>
+$stmt = $conn->prepare("SELECT * FROM faq WHERE status = 1 ORDER BY order_num ASC");
+$stmt->execute();
+$faqs = $stmt->fetchAll();
+
+include '../templates/header.php';
+?>
 
 <main>
     <div class="container my-5">

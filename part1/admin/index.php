@@ -18,71 +18,79 @@ $user_count = $conn->query("SELECT COUNT(*) FROM users")->fetchColumn();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://localhost/company_website/srtdash/assets/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3 col-lg-2 bg-dark text-white min-vh-100 p-0">
-                <div class="text-center py-4 border-bottom border-secondary">
-                    <h5>Admin Panel</h5>
-                    <small><?php echo $_SESSION['user_name']; ?></small>
-                </div>
-                <ul class="nav flex-column mt-3">
-                    <li class="nav-item">
-                        <a class="nav-link text-white bg-primary" href="index.php">
-                            <i class="fas fa-tachometer-alt me-2"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="manage_contacts.php">
-                            <i class="fas fa-envelope me-2"></i> Quan ly lien he
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="manage_home.php">
-                            <i class="fas fa-edit me-2"></i> Quan ly noi dung
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="../logout.php">
-                            <i class="fas fa-sign-out-alt me-2"></i> Dang xuat
-                        </a>
-                    </li>
-                </ul>
-            </div>
+<div class="page-container">
+    <div class="sidebar-menu">
+        <div class="sidebar-header">
+            <div class="logo"><h5>Công ty ABC</h5></div>
+        </div>
+        <div class="main-menu">
+            <ul class="metismenu">
+                <li class="active"><a href="index.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="manage_contacts.php"><i class="fas fa-envelope"></i> Quản lý liên hệ</a></li>
+                <li><a href="manage_home.php"><i class="fas fa-edit"></i> Quản lý nội dung</a></li>
+                <li><a href="manage_users.php"><i class="fas fa-users"></i> Quản lý thành viên</a></li>
+                <li><a href="../logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+            </ul>
+        </div>
+    </div>
 
-            <div class="col-md-9 col-lg-10 p-4">
-                <h2>Dashboard</h2>
-                <div class="row mt-4">
-                    <div class="col-md-4 mb-3">
-                        <div class="card text-white bg-primary">
-                            <div class="card-body">
-                                <h5 class="card-title">Tong lien he</h5>
-                                <p class="card-text display-6"><?php echo $contact_count; ?></p>
-                            </div>
+    <div class="main-content">
+        <div class="header-area">
+            <div class="nav-btn"><i class="fas fa-bars"></i></div>
+            <div class="user-profile">
+                <div class="avatar"><?php echo substr($_SESSION['user_name'], 0, 1); ?></div>
+                <div class="user-name"><?php echo $_SESSION['user_name']; ?></div>
+            </div>
+        </div>
+
+        <div class="main-content-inner">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="single-report">
+                        <div class="s-report-inner">
+                            <div><div class="s-report-title">Tổng liên hệ</div><h2><?php echo $contact_count; ?></h2></div>
+                            <div class="icon icon-blue"><i class="fas fa-envelope"></i></div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card text-white bg-warning">
-                            <div class="card-body">
-                                <h5 class="card-title">Chua doc</h5>
-                                <p class="card-text display-6"><?php echo $unread_count; ?></p>
-                            </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="single-report">
+                        <div class="s-report-inner">
+                            <div><div class="s-report-title">Chưa đọc</div><h2><?php echo $unread_count; ?></h2></div>
+                            <div class="icon icon-amber"><i class="fas fa-eye"></i></div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="card text-white bg-success">
-                            <div class="card-body">
-                                <h5 class="card-title">Thanh vien</h5>
-                                <p class="card-text display-6"><?php echo $user_count; ?></p>
-                            </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="single-report">
+                        <div class="s-report-inner">
+                            <div><div class="s-report-title">Thành viên</div><h2><?php echo $user_count; ?></h2></div>
+                            <div class="icon icon-emerald"><i class="fas fa-users"></i></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<script>
+document.querySelector('.nav-btn').addEventListener('click', function() {
+    document.querySelector('.sidebar-menu').classList.toggle('active');
+    document.querySelector('.page-container').classList.toggle('sbar_collapsed');
+});
+
+document.querySelector('.user-profile').addEventListener('click', function(e) {
+    let dropdown = this.querySelector('.dropdown-menu');
+    if(dropdown) {
+        dropdown.classList.toggle('show');
+        e.stopPropagation();
+    }
+});
+</script>
 </body>
 </html>

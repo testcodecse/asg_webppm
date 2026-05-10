@@ -1,17 +1,15 @@
 <?php
-session_start();
+include '../inc/config.php';
 
 if(isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
 }
 
-include '../inc/config.php';
-
 $error = '';
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
+    $username = trim($_POST['username']);
     $password = $_POST['password'];
     
     if(empty($username) || empty($password)) {
@@ -34,9 +32,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-?>
 
-<?php include '../templates/header.php'; ?>
+include '../templates/header.php';
+?>
 
 <main>
     <div class="container my-5">
@@ -52,14 +50,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="alert alert-danger"><?php echo $error; ?></div>
                         <?php endif; ?>
                         
-                        <form method="POST">
+                        <form method="POST" id="loginForm">
                             <div class="mb-3">
                                 <label class="form-label">Tên đăng nhập hoặc Email</label>
-                                <input type="text" name="username" class="form-control" required>
+                                <input type="text" name="username" id="username" class="form-control" required>
+                                <div id="usernameError" class="text-danger small"></div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Mật khẩu</label>
-                                <input type="password" name="password" class="form-control" required>
+                                <input type="password" name="password" id="password" class="form-control" required>
+                                <div id="passwordError" class="text-danger small"></div>
                             </div>
                             <button type="submit" class="btn btn-primary w-100 py-2">
                                 <i class="fas fa-sign-in-alt me-2"></i>Đăng nhập
